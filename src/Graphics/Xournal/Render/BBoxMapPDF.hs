@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, CPP #-}
 
 module Graphics.Xournal.Render.BBoxMapPDF where
 
@@ -11,7 +11,9 @@ import Data.IntMap
 
 import Data.ByteString hiding (putStrLn, empty)
 import qualified Data.ByteString.Char8 as C hiding (empty)
+#ifdef POPPLER
 import qualified Graphics.UI.Gtk.Poppler.Document as Poppler
+#endif
 
 import Graphics.Rendering.Cairo
 
@@ -21,8 +23,12 @@ data BackgroundPDFDrawable =
               }
   | BkgPDFPDF { bkgpdf_domain :: Maybe ByteString
               , bkgpdf_filename :: Maybe ByteString
-              , bkgpdf_pageno :: Int 
+              , bkgpdf_pageno :: Int
+#ifdef POPPLER 
               , bkgpdf_popplerpage :: Maybe Poppler.Page 
+#else 
+              , bkgpdf_popplerpage :: Maybe ()
+#endif
               , bkgpdf_cairosurface :: Maybe Surface
               } 
 
@@ -48,7 +54,6 @@ bkgFromBkgPDF (BkgPDFPDF d f n _ _ ) = BackgroundPdf "pdf" d f n
 bkgPDFFromBkg :: Background -> BackgroundPDFDrawable
 bkgPDFFromBkg (Background _t c s) = BkgPDFSolid c s
 bkgPDFFromBkg (BackgroundPdf _t md mf pn) = BkgPDFPDF md mf pn Nothing Nothing
-
 
   
 emptyTXournalBBoxMapPDF :: TXournalBBoxMapPDF
