@@ -52,6 +52,6 @@ Library
                    Graphics.Xournal.Render.Type
 
   if flag(poppler) 
-    GHC-Options: -DPOPPLER
+    cpp-options: -DPOPPLER
                   
 
