@@ -31,7 +31,7 @@ Library
                    strict == 0.3.*, 
                    bytestring == 0.9.*,
                    poppler == 0.12.*, 
-                   lens >= 2.4 && < 2.7, 
+                   microlens >= 0.4,
                    xournal-types >= 0.4.999 && < 0.6,
                    TypeCompose == 0.9.*
   else
@@ -41,8 +41,8 @@ Library
                    cairo == 0.12.*, 
                    strict == 0.3.*, 
                    bytestring == 0.9.*,
-                   lens >= 2.4 && < 2.7, 
                    xournal-types >= 0.4.999 && < 0.6,
+                   microlens >= 0.4,
                    TypeCompose == 0.9.*
 
 
