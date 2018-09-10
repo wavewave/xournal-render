@@ -23,10 +23,11 @@ import Data.Traversable
 
 import           Control.Category
 import           Control.Compose
-import           Control.Lens
 import           Control.Monad.State hiding (get, mapM_, mapM,sequence)
 import qualified Control.Monad.State as St (get)
 import           Graphics.Rendering.Cairo
+import           Lens.Micro (set)
+import           Lens.Micro.Extras (view)
 -- from hoodle-platform 
 import           Data.Xournal.BBox
 import           Data.Xournal.Buffer
